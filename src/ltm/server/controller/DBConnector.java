@@ -61,7 +61,7 @@ public class DBConnector {
     }
     
     public ArrayList<Student> searchStudentByName(String name) {
-        ArrayList<Student> students = null;
+        ArrayList<Student> students = new ArrayList<Student>();
         try {
             String query = "SELECT * FROM sinhvien WHERE ten like '%" + name + "%'";
             Statement stm = conn.createStatement();
@@ -77,10 +77,22 @@ public class DBConnector {
         return students;
     }
     
-    public void updatePoint(int studentID, int subjectID, int cc, int kt, int btl) {
+    public void updatePoint(int studentID, int subjectID, int cc, int kt, int btl, int thi) {
         try {
-            String query = "UPDATE hoc SET cc = " + cc + ", kt = " + kt + ", btl = " + btl + 
+            String query = "UPDATE hoc SET cc = " + cc + ", kt = " + kt + ", btl = " + btl + ", thi = " + thi +
                             " WHERE id_sinhvien = " + studentID + " AND id_monhoc = " + subjectID;
+            Statement stm = conn.createStatement();
+            stm.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateStudent(int id, String ten, String ngaysinh,  String khoa, String que) {
+        try {
+            String query = "UPDATE sinhvien SET ten = '" + ten + "', ngaysinh = '" + ngaysinh + 
+                            "', khoa = '" + khoa + "', que = '" + que +
+                            "' WHERE id = " + id;
             Statement stm = conn.createStatement();
             stm.executeUpdate(query);
         } catch (SQLException ex) {

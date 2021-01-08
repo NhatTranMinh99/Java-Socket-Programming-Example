@@ -1,6 +1,9 @@
 package ltm.server.model;
 
-public class Student {
+import java.io.Serializable;
+import java.util.Vector;
+
+public class Student implements Serializable {
     private int id;
     private String ten;
     private String ngaysinh;
@@ -60,5 +63,13 @@ public class Student {
         return "Student{" + "id=" + id + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", khoa=" + khoa + ", que=" + que + '}';
     }
     
-    
+    public Vector toVector() {
+        Vector<String> v = new Vector<String>();
+        v.add(Integer.toString(id));
+        v.add(ten);
+        v.add(ngaysinh);
+        v.add(khoa);
+        v.add(que);
+        return v;
+    }
 }
