@@ -15,7 +15,8 @@ import ltm.server.model.Student;
 public class MainController {
     MainView view;
     EditView editView;
-    ClientTCP socket;
+//    ClientTCP socket;   // bỏ comment nếu dùng TCP
+    ClientUDP socket;   // bỏ comment nếu dùng TCP
 
     public MainController() {
         view = new MainView();
@@ -28,7 +29,8 @@ public class MainController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            socket = new ClientTCP();
+//            socket = new ClientTCP();   // Bỏ comment nếu dùng TCP
+            socket = new ClientUDP();   // Bỏ comment nếu dùng UDP
             String studentName = view.getStudentName();
             if (!studentName.equals("")) {
                 socket.send(new ClientMessage(ClientMessage.REQUEST.SEARCH, studentName));
@@ -66,7 +68,8 @@ public class MainController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            socket = new ClientTCP();
+//            socket = new ClientTCP();   // Bỏ comment nếu dùng TCP
+            socket = new ClientUDP();   // Bỏ comment nếu dùng UDP
             Student student = editView.getStudent();
             
             if (student.getTen().equals("") || student.getNgaysinh().equals("") ||

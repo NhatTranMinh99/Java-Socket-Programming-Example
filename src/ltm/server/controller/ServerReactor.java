@@ -11,9 +11,17 @@ import ltm.server.model.Student;
 
 public class ServerReactor {
     private DBConnector conn;
-    private ServerTCP socket;
+//    private ServerTCP socket;   // Gỡ comment nếu dùng TCP
+    private ServerUDP socket;   // Gỡ comment nếu dùng UDP
     
-    public ServerReactor(DBConnector conn, ServerTCP socket) {
+    // Gỡ comment nếu dùng TCP
+//    public ServerReactor(DBConnector conn, ServerTCP socket) {
+//        this.conn = conn;
+//        this.socket = socket;
+//    }
+    
+    // Gỡ comment nếu dùng UDP
+    public ServerReactor(DBConnector conn, ServerUDP socket) {
         this.conn = conn;
         this.socket = socket;
     }
